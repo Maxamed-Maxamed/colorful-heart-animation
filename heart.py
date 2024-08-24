@@ -11,8 +11,7 @@ screen.bgcolor("#FFE6F0")  # Set background color to light pink
 # Create a turtle object and set its properties
 heart = turtle.Turtle()
 heart.hideturtle()  # Hide the turtle cursor
-heart.speed(10)  # Set drawing speed (1-10, where 1 is slowest and 10 is fastest)
-
+heart.speed(0)  # 0 is the fastest speed
 # Define a function to draw a heart
 def draw_heart(x, y, size, color, thickness):
     heart.penup()  # Lift the pen to move without drawing
@@ -25,16 +24,16 @@ def draw_heart(x, y, size, color, thickness):
     heart.forward(size)  # Draw the first line of the heart
    
     # Draw the left curve of the heart
-    for _ in range(200):
-        heart.right(1)  # Turn right 1 degree
-        heart.forward(size * 0.009)  # Move forward a small amount
+    for _ in range(100):  # Reduced from 200
+        heart.right(2)  # Increased from 1
+        heart.forward(size * 0.018)  # Doubled from 0.009
    
     heart.left(120)  # Turn left to prepare for the right curve
    
     # Draw the right curve of the heart
-    for _ in range(200):
-        heart.right(1)  # Turn right 1 degree
-        heart.forward(size * 0.009)  # Move forward a small amount
+    for _ in range(100):  # Reduced from 200
+        heart.right(2)  # Increased from 1
+        heart.forward(size * 0.018)  # Doubled from 0.009
    
     heart.forward(size)  # Draw the final line of the heart
     heart.end_fill()  # End filling the shape
@@ -54,6 +53,10 @@ hearts = [
 # Loop through the hearts list and draw each heart
 for heart_params in hearts:
     draw_heart(*heart_params)  # Unpack the tuple and pass as arguments to draw_heart
-    time.sleep(0.5)  # Pause for 0.5 seconds between drawing each heart
+    # time.sleep(0.5)  # Comment out or remove this line
 
 screen.mainloop() # Keep the screen open 
+
+screen.tracer(0)  # Turn off animation
+
+screen.update()  # Update the screen once all hearts are drawn
